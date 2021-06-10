@@ -76,7 +76,7 @@ function Director:new(stage, starting_difficulty)
     }
 
     self.enemy_spawn_chances = {
-        [1] = chanceList({'Rock', 1}),
+        [1] = chanceList({'Rock', 1}, {'Quantum', 1}),
         [2] = chanceList({'Rock', 8}, {'BigRock', 4}),
         [3] = chanceList({'Rock', 7}, {'BigRock', 3}, {'Shooter', 3}),
         [4] = chanceList({'Rock', 6}, {'BigRock', 3}, {'Shooter', 3}, {'Seeker', 3}),
@@ -85,17 +85,17 @@ function Director:new(stage, starting_difficulty)
         [7] = chanceList({'Rock', 4}, {'BigRock', 3}, {'Shooter', 3}, {'Seeker', 2}, {'Waver', 2}, {'Roller', 2}),
         [8] = chanceList({'Rock', 4}, {'BigRock', 3}, {'Shooter', 3}, {'Seeker', 2}, {'Waver', 2}),
         [9] = chanceList({'Rock', 4}, {'BigRock', 4}, {'Shooter', 2}, {'Sapper', 2}),
-        [10] = chanceList({'Rock', 4}, {'BigRock', 4}, {'Shooter', 4}), --{'Rotator', 2}),
+        [10] = chanceList({'Rock', 4}, {'BigRock', 4}, {'Shooter', 4}), -- {'Rotator', 2}),
         [11] = chanceList({'Rock', 6}, {'BigRock', 6}, {'Tanker', 2}),
         [12] = chanceList({'Rock', 4}, {'BigRock', 4}, {'Shooter', 4}, {'Seeker', 4}, {'Waver', 4}),
         [13] = chanceList({'Rock', 4}, {'BigRock', 4}, {'Triad', 1}),
         [14] = chanceList({'Rock', 2}, {'BigRock', 2}, {'Shooter', 2}, {'Waver', 2}, {'Tanker', 2}, {'Trailer', 4}),
         [15] = chanceList({'Rock', 4}, {'BigRock', 4}, {'Tanker', 4}),
-        [16] = chanceList({'Rock', 4}, {'BigRock', 2}, {'Shooter', 2}), --{'Rotator', 2}),
+        [16] = chanceList({'Rock', 4}, {'BigRock', 2}, {'Shooter', 2}), -- {'Rotator', 2}),
         [17] = chanceList({'Rock', 4}, {'BigRock', 4}, {'Shooter', 3}, {'Orbitter', 4}),
         [18] = chanceList({'Rock', 4}, {'BigRock', 4}, {'Shooter', 3}, {'Reflecteer', 2}),
         [19] = chanceList({'Rock', 4}, {'BigRock', 4}, {'Shooter', 3}, {'Glitcher', 2}),
-        [20] = chanceList({'Tanker', 1}, {'Quantum', 2}),
+        [20] = chanceList({'Tanker', 1}, {'Quantum', 1}),
     }
     for i = 21, 1024 do 
         self.enemy_spawn_chances[i] = chanceList({'Rock', love.math.random(2, 12)}, {'BigRock', love.math.random(2, 12)}, {'Shooter', love.math.random(2, 12)}, {'Sapper', love.math.random(2, 12)}, 

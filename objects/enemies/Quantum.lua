@@ -21,8 +21,8 @@ function Quantum:new(area, x, y, opts)
     self.vx = self.v
 
     self.angv = random(-10, 10)
-    self.max_hp = 3500*current_room.director.enemy_hp_multiplier
-    self.hp = 3500*current_room.director.enemy_hp_multiplier
+    self.max_hp = 250*current_room.director.enemy_hp_multiplier
+    self.hp = 250*current_room.director.enemy_hp_multiplier
 
     self.timer:every(random(6,10), function()
         self.timer:tween(0.2, self, {angv = 0, v = 0}, 'in-out-cubic', function()

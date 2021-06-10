@@ -25,8 +25,10 @@ function HelpModule:new(console, y)
     self.console:addLine(0.42, '    display       Display options') 
     self.console:addLine(0.44, '    effects       Effects options') 
     self.console:addLine(0.46, "    resolution    Screen resolution options") 
-    self.console:addLine(0.48, "    sound         Sound options") 
-    self.console.timer:after(0.52, function() self.active = true end)
+    self.console:addLine(0.48, "    sound         Sound options")
+    self.console:addLine(0.98, "")
+    self.console:addLine(0.1, "     deliverance   Experience Aegleseeker")
+    self.console.timer:after(0.54, function() self.active = true end)
 
     self.selection_index = 1
     self.selection_widths = {
