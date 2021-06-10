@@ -72,6 +72,7 @@ function Director:new(stage, starting_difficulty)
         ['Orbitter'] = 12,
         ['Reflecteer'] = 12,
         ['Glitcher'] = 16,
+        ['Quantum'] = 20,
     }
 
     self.enemy_spawn_chances = {
@@ -94,12 +95,13 @@ function Director:new(stage, starting_difficulty)
         [17] = chanceList({'Rock', 4}, {'BigRock', 4}, {'Shooter', 3}, {'Orbitter', 4}),
         [18] = chanceList({'Rock', 4}, {'BigRock', 4}, {'Shooter', 3}, {'Reflecteer', 2}),
         [19] = chanceList({'Rock', 4}, {'BigRock', 4}, {'Shooter', 3}, {'Glitcher', 2}),
-        [20] = chanceList({'Tanker', 1}),
+        [20] = chanceList({'Tanker', 1}, {'Quantum', 2}),
     }
     for i = 21, 1024 do 
         self.enemy_spawn_chances[i] = chanceList({'Rock', love.math.random(2, 12)}, {'BigRock', love.math.random(2, 12)}, {'Shooter', love.math.random(2, 12)}, {'Sapper', love.math.random(2, 12)}, 
         {'Roller', love.math.random(2, 12)}, {'Seeker', love.math.random(2, 12)}, {'Waver', love.math.random(2, 12)}, --[[{'Rotator', love.math.random(2, 12)},]] {'Tanker', love.math.random(2, 12)},
-        {'Triad', love.math.random(2, 6)}, {'Trailer', love.math.random(2, 12)}, {'Reflecteer', love.math.random(2, 12)}, {'Orbitter', love.math.random(2, 12)}, {'Glitcher', love.math.random(2, 6)}) 
+        {'Triad', love.math.random(2, 6)}, {'Trailer', love.math.random(2, 12)}, {'Reflecteer', love.math.random(2, 12)}, {'Orbitter', love.math.random(2, 12)}, {'Glitcher', love.math.random(2, 6)},
+        {'Quantum', love.math.random(2, 6)}) 
     end
 
     local first_10_runs_sp_spawn_chance_multiplier = 1
