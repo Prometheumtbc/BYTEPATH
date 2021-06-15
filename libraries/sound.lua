@@ -48,6 +48,17 @@ function sound()
         'AIRGLOW - AIRGLOW - Memory Bank - 10 System Shutdown',
     }
     for _, song in ipairs(songs) do register(song, 'stream', {'master', 'music'}) end
+
+    -- pathfinder songs
+    register('Kubbi - Ember - 01 Pathfinder', 'stream', {'master', 'kubbi', 'pathfinder'})
+    register('Kubbi - Ember - 02 Ember', 'stream', {'master', 'kubbi', 'ember'})
+    register('Kubbi - Ember - 03 Firelight', 'stream', {'master', 'kubbi', 'firelight'})
+    register('Kubbi - Ember - 04 Cascade', 'stream', {'master', 'kubbi', 'cascade'})
+    register('Kubbi - Ember - 05 Compass', 'stream', {'master', 'kubbi', 'compass'})
+    register('Kubbi - Ember - 06 Overworld', 'stream', {'master', 'kubbi', 'overworld'})
+    register('Kubbi - Ember - 07 The Cairn', 'stream', {'master', 'kubbi', 'cairn'})
+    register('Kubbi - Ember - 08 Restoration', 'stream', {'master', 'kubbi', 'restoration'})
+    register('Kubbi - Ember - 09 Formed by Glaciers', 'stream', {'master', 'kubbi', 'glaciers'})
 end
 
 function soundUpdate(dt)

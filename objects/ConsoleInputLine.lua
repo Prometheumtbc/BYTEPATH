@@ -9,7 +9,7 @@ function ConsoleInputLine:new(x, y, opts)
     self:setCharacters()
     self.timer:every(0.4, function() self.cursor_show = not self.cursor_show end)
 
-    self.commands = {'resolution', 'sound', 'device', 'fullscreen', 'passives', 'clear', 'help', 'achievements', 'about', 'escape', 'shutdown', 'start', 'classes', 'display', 'effects', 'credits'}
+    self.commands = {'pathfinder','resolution', 'sound', 'device', 'fullscreen', 'passives', 'clear', 'help', 'achievements', 'about', 'escape', 'shutdown', 'start', 'classes', 'display', 'effects', 'credits'}
 end
 
 function ConsoleInputLine:update(dt)
@@ -68,12 +68,15 @@ function ConsoleInputLine:enter()
     local command = self.text:utf8sub(15, -1)
     if #command == 0 then return end
     self.console:addToCommandHistory(command)
-    if fn.any(self.commands, command) or command:find('verify') then
+    if fn.any(self.commands, command) or command:find('verify') or command == 'pathfinder' then
         self.console.input_line = nil
         self.console.bytepath_main = nil
         if command == 'help' then
             self:help()
-
+        
+        elseif command == 'pathfinder' then
+            table.insert(self.console.modules, PathfinderConsoleModule(self.console, self.console.line_y))
+        
         elseif command == 'about' then
             table.insert(self.console.modules, AboutModule(self.console, self.console.line_y))
 
