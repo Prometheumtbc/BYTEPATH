@@ -46,19 +46,40 @@ function sound()
         'AIRGLOW - AIRGLOW - Memory Bank - 08 Spliff & Wesson',
         'AIRGLOW - AIRGLOW - Memory Bank - 09 Innermission',
         'AIRGLOW - AIRGLOW - Memory Bank - 10 System Shutdown',
+        'Kubbi - Ember - 01 Pathfinder', 
+        'Kubbi - Ember - 02 Ember',
+        'Kubbi - Ember - 03 Firelight',
+        'Kubbi - Ember - 04 Cascade', 
+        'Kubbi - Ember - 05 Compass', 
+        'Kubbi - Ember - 06 Overworld',
+        'Kubbi - Ember - 07 The Cairn',
+        'Kubbi - Ember - 08 Restoration',
+        'Kubbi - Ember - 09 Formed by Glaciers',
     }
     for _, song in ipairs(songs) do register(song, 'stream', {'master', 'music'}) end
-
-    -- pathfinder songs
-    register('Kubbi - Ember - 01 Pathfinder', 'stream', {'master', 'kubbi', 'pathfinder'})
-    register('Kubbi - Ember - 02 Ember', 'stream', {'master', 'kubbi', 'ember'})
-    register('Kubbi - Ember - 03 Firelight', 'stream', {'master', 'kubbi', 'firelight'})
-    register('Kubbi - Ember - 04 Cascade', 'stream', {'master', 'kubbi', 'cascade'})
-    register('Kubbi - Ember - 05 Compass', 'stream', {'master', 'kubbi', 'compass'})
-    register('Kubbi - Ember - 06 Overworld', 'stream', {'master', 'kubbi', 'overworld'})
-    register('Kubbi - Ember - 07 The Cairn', 'stream', {'master', 'kubbi', 'cairn'})
-    register('Kubbi - Ember - 08 Restoration', 'stream', {'master', 'kubbi', 'restoration'})
-    register('Kubbi - Ember - 09 Formed by Glaciers', 'stream', {'master', 'kubbi', 'glaciers'})
+    bytepath_songs = {
+        'AIRGLOW - AIRGLOW - Memory Bank - 01 Memory Bank',
+        'AIRGLOW - AIRGLOW - Memory Bank - 02 Cepheid Disk',
+        'AIRGLOW - AIRGLOW - Memory Bank - 03 Electrifying Landscape',
+        'AIRGLOW - AIRGLOW - Memory Bank - 04 Blueshift',
+        'AIRGLOW - AIRGLOW - Memory Bank - 05 Far Apart',
+        'AIRGLOW - AIRGLOW - Memory Bank - 06 Lisa',
+        'AIRGLOW - AIRGLOW - Memory Bank - 07 New Touch',
+        'AIRGLOW - AIRGLOW - Memory Bank - 08 Spliff & Wesson',
+        'AIRGLOW - AIRGLOW - Memory Bank - 09 Innermission',
+        'AIRGLOW - AIRGLOW - Memory Bank - 10 System Shutdown',
+    }
+    pathfinder_songs = {
+        'Kubbi - Ember - 01 Pathfinder', 
+        'Kubbi - Ember - 02 Ember',
+        'Kubbi - Ember - 03 Firelight',
+        'Kubbi - Ember - 04 Cascade', 
+        'Kubbi - Ember - 05 Compass', 
+        'Kubbi - Ember - 06 Overworld',
+        'Kubbi - Ember - 07 The Cairn',
+        'Kubbi - Ember - 08 Restoration',
+        'Kubbi - Ember - 09 Formed by Glaciers',
+    }
 end
 
 function soundUpdate(dt)
@@ -160,13 +181,27 @@ function fadeVolume(tag_name, duration, target_volume)
 end
 
 function playRandomSong()
-    if currently_playing_song then currently_playing_song:stop() end
-    for i, source in ipairs(playing_sources) do
-        if source.source:isStopped() then
-            table.remove(playing_sources, i)
+    if not in_pathfinder then
+        if currently_playing_song then currently_playing_song:stop() end
+        for i, source in ipairs(playing_sources) do
+            if source.source:isStopped() then
+                table.remove(playing_sources, i)
+            end
         end
+        currently_playing_song = play(table.random(bytepath_songs))
     end
-    currently_playing_song = play(table.random(songs))
+end
+
+function playRandomPathfinderSong()
+    if in_pathfinder and pathfinder_random_track then
+        if currently_playing_song then currently_playing_song:stop() end
+        for i, source in ipairs(playing_sources) do
+            if source.source:isStopped() then
+                table.remove(playing_sources, i)
+            end
+        end
+        currently_playing_song = play(table.random(pathfinder_songs))
+    end
 end
 
 function playKeystroke()
