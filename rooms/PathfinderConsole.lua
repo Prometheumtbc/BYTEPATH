@@ -24,6 +24,7 @@ function PathfinderConsole:new()
 
     command_history_index = #command_history
 
+    currently_playing_song:stop()
     self:pathfinderIntro()
 
     input:unbindAll()
@@ -47,7 +48,7 @@ function PathfinderConsole:new()
     input:bind('tab', 'tab')
 
     save()
-    fadeVolume('music', 1, 0.05)
+    fadeVolume('music', 1, 0.5)
     fadeVolume('game', 1, 0.0)
 
     self.timer:every(0.05, function()
@@ -333,6 +334,9 @@ function PathfinderConsole:pathfinderIntro()
     self:addLine(delay + 7.98, ':: finalizing build')
     self:addLine(delay + 9, 'Welcome to ;PATHFINDER,')
     self:pathfinderMain(delay + 11)
+    self.timer:after(delay + 11, function()
+        play('Kubbi - Ember - 01 Pathfinder', {loop = true, volume = 1})
+    end)
 end
 
 function PathfinderConsole:rgbShift()

@@ -9,7 +9,7 @@ function PathfinderConsoleInputLine:new(x, y, opts)
     self:setCharacters()
     self.timer:every(0.4, function() self.cursor_show = not self.cursor_show end)
 
-    self.commands = {'rewrite', 'clear', 'security', 'passives', 'connect', 'about', 'achievements', 'credits', 'return', 'help', 'shutdown', 'display', 'effects', 'resolution', 'sound'}
+    self.commands = {'rewrite', 'clear', 'security', 'passives', 'connect', 'about', 'achievements', 'credits', 'return', 'help', 'shutdown', 'display', 'effects', 'resolution', 'sound', 'start'}
 end
 
 function PathfinderConsoleInputLine:update(dt)
@@ -101,8 +101,12 @@ function PathfinderConsoleInputLine:enter()
         elseif command == 'passives' then
             gotoRoom('SkillTree')
 
-        elseif command == 'start' then
+        elseif command == 'connect' then
             gotoRoom('Stage')
+            currently_playing_song:stop()
+            table.remove(playing_sources, 1)
+            pathfinder_random_track = true
+            playRandomPathfinderSong()
 
         elseif command == 'credits' then
             table.insert(self.console.modules, PathfinderCreditsModule(self.console, self.console.line_y))
