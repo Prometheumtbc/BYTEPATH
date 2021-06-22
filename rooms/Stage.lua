@@ -68,9 +68,8 @@ function Stage:new()
 
     fadeVolume('music', 5, 0.5)
     fadeVolume('game', 5, 1)
-    if not isAnySongPlaying() and not muted then if in_pathfinder then playRandomPathfinderSong() else playRandomSong() end end
 
-    self.timer:every(0.1, function() 
+    self.timer:every(0.1, function()
         self.area:addGameObject('GlitchDisplacement') 
         self.area:addGameObject('RGBShift') 
     end)
@@ -102,6 +101,10 @@ function Stage:getInfoTextPosition(x, y)
 end
 
 function Stage:update(dt)
+    if not isAnySongPlaying() and not muted then 
+        if in_pathfinder then playRandomPathfinderSong() else playRandomSong() end
+    end
+    
     if input:pressed('escape') and not self.scorescreen then self:pause() end
     if self.paused then self.paused_object:update(dt) end
     if self.paused then return end

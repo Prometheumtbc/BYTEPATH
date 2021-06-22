@@ -148,7 +148,7 @@ function love.update(dt)
     camera:update(dt*slow_amount)
     soundUpdate(dt*slow_amount)
     if current_room then current_room:update(dt*slow_amount) end
-
+    
     -- Disable expensive shaders if FPS remains below 10 for 1 seconds
     fps = love.timer.getFPS()
     if fps < 10 and not pre_disable_expensive_shaders then 
