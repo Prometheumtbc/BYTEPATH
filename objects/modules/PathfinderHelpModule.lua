@@ -47,7 +47,7 @@ function HelpModule:new(console, y)
         self.console.font:getWidth('sound'),
     }
 
-    self.y_offsets = {12, 12, 12, 12, 12, 24, 24, 24, 24, 24, 24, 36, 36, 36, 36}
+    self.y_offsets = {12, 12, 12, 12, 12, 24, 24, 24, 24, 24, 24, 36, 36, 36, 48}
 end
 
 function HelpModule:update(dt)
@@ -75,7 +75,7 @@ function HelpModule:update(dt)
     if input:pressed('return') then
         self.active = false
         if self.selection_index == 1 then
-            gotoRoom('PathfinderRewrite')
+            table.insert(self.console.modules, PathfinderRewriteModule(self.console, self.console.line_y))
         elseif self.selection_index == 2 then
             table.insert(self.console.modules, ClearModule(self.console, self.console.line_y))
         elseif self.selection_index == 3 then

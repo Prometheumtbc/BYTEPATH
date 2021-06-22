@@ -106,7 +106,7 @@ function love.load()
     else resize(sx, sy, fullscreen) end
 
     current_room = nil
-    timer:after(0.5, function() gotoRoom('Console') end)
+    if begin_pathfinder then timer:after(0.5, function() gotoRoom('PathfinderConsole') end) else timer:after(0.5, function() gotoRoom('Console') end) end
 
     slow_amount = 1
     fps = 60

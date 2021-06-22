@@ -12,10 +12,10 @@ function Paused:update(dt)
     if input:pressed('return') or input:pressed('up') then
         if self.resume then 
             self.stage:pause()
-            fadeVolume('music', 2, 0.25)
+            fadeVolume('music', 2, 0.5)
         else 
             playMenuBack()
-            gotoRoom('Console')
+            if in_pathfinder then gotoRoom('PathfinderConsole') else gotoRoom('Console') end
         end
     end
 end

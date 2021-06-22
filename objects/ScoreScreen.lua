@@ -7,10 +7,8 @@ function ScoreScreen:new(stage)
 end
 
 function ScoreScreen:update(dt)
-    if input:pressed('return') or input:pressed('escape') then timer:after(0.15, function() gotoRoom('Console') end) end
-    if input:pressed('restart') then 
-        timer:after(0.15, function() gotoRoom('Stage') end)
-    end
+    if input:pressed('return') or input:pressed('escape') then if in_pathfinder then timer:after(0.15, function() gotoRoom('PathfinderConsole') end) else timer:after(0.15, function() gotoRoom('Console') end) end end
+    if input:pressed('restart') then timer:after(0.15, function() gotoRoom('Stage') end) end
 end
 
 function ScoreScreen:draw()

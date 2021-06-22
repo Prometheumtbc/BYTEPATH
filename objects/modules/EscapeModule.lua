@@ -98,6 +98,7 @@ function EscapeModule:new(console, y)
                 removeSave()
                 loop = loop + 1
                 setTransientGlobals()
+                begin_pathfinder = true
                 love.event.quit('restart')
             end)
         end)

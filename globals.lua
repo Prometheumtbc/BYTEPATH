@@ -181,3 +181,6 @@ achievement_descriptions = {
 }
 
 devices = {'Fighter', 'Crusader', 'Rogue', 'Bit Hunter', 'Sentinel', 'Striker', 'Nuclear', 'Cycler', 'Wisp'}
+
+begin_pathfinder = false
+pathfinder_unlocked = true

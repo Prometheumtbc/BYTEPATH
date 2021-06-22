@@ -68,7 +68,7 @@ function Stage:new()
 
     fadeVolume('music', 5, 0.5)
     fadeVolume('game', 5, 1)
-    if not isAnySongPlaying() and not muted then playRandomSong() end
+    if not isAnySongPlaying() and not muted then if in_pathfinder then playRandomPathfinderSong() else playRandomSong() end end
 
     self.timer:every(0.1, function() 
         self.area:addGameObject('GlitchDisplacement') 
@@ -425,7 +425,7 @@ function Stage:finish()
 end
 
 function Stage:pause()
-    self.paused = not self.paused 
+    self.paused = not self.paused
     if self.paused then self.paused_object = Paused(self)
     else self.paused_object = nil end
 end

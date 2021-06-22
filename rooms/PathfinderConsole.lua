@@ -20,12 +20,19 @@ function PathfinderConsole:new()
 
     self.glitches = {}
 
-    in_pathfinder = true
-
     command_history_index = #command_history
 
     currently_playing_song:stop()
-    self:pathfinderIntro()
+    in_pathfinder = true
+    pathfinder_unlocked = true
+    if pathfinder_intro then
+        self:pathfinderIntro()
+    else
+        fadeVolume('music', 0, 0)
+        fadeIn('Kubbi - Ember - 08 Restoration', {duration = 10, loop = true, volume = 0.5})
+        self:pathfinderMain2()
+    end
+
 
     input:unbindAll()
     input:bind('left', 'left')
@@ -48,7 +55,7 @@ function PathfinderConsole:new()
     input:bind('tab', 'tab')
 
     save()
-    fadeVolume('music', 1, 0.5)
+    fadeVolume('music', 1, 0.0)
     fadeVolume('game', 1, 0.0)
 
     self.timer:every(0.05, function()
@@ -274,8 +281,8 @@ function PathfinderConsole:pathfinderMain(delay)
         self.bytepath_main_selection_index = 1
         self.bytepath_main_texts = {'connect', 'rewrite', 'help', 'credits', 'return', 'shutdown'}
         self.bytepath_main_selection_widths = {self.font:getWidth('connect'), self.font:getWidth('rewrite'), self.font:getWidth('help'), self.font:getWidth('credits'), self.font:getWidth('return'), self.font:getWidth('shutdown')}
-        if loop > 0 then self.bytepath_main_y = self.line_y + 13*12
-        else self.bytepath_main_y = self.line_y + 13*12 - 12 end
+        if loop > 0 then self.bytepath_main_y = self.line_y + 8*12
+        else self.bytepath_main_y = self.line_y + 8*12 - 12 end
         self.timer:after(0.38, function() self.bytepath_main_active = true end)
     end)
 end
@@ -319,14 +326,15 @@ function PathfinderConsole:pathfinderMain2()
         self.bytepath_main_selection_index = 1
         self.bytepath_main_texts = {'connect', 'rewrite', 'help', 'credits', 'return', 'shutdown'}
         self.bytepath_main_selection_widths = {self.font:getWidth('connect'), self.font:getWidth('rewrite'), self.font:getWidth('help'), self.font:getWidth('credits'), self.font:getWidth('return'), self.font:getWidth('shutdown')}
-        if loop > 0 then self.bytepath_main_y = self.line_y + 13*12
-        else self.bytepath_main_y = self.line_y + 13*12 - 12 end
+        if loop > 0 then self.bytepath_main_y = self.line_y + 8*12
+        else self.bytepath_main_y = self.line_y + 8*12 - 12 end
         self.timer:after(0.38, function() self.bytepath_main_active = true end)
     end)
 end
 
 function PathfinderConsole:pathfinderIntro()
     delay = 1.50
+    pathfinder_intro = false
     self:addLine(delay + 1.0, ':: requesting pathfinder access', 4, {{':: requesting pathfinder access', '<access granted>'}})
     self:addLine(delay + 2.0, '...', 5, {{'...', ':: retrieved modules'}})
     self:addLine(delay + 3.0, '...', 4.33, {{'...', ':: extracted packages'}})
@@ -335,7 +343,8 @@ function PathfinderConsole:pathfinderIntro()
     self:addLine(delay + 9, 'Welcome to ;PATHFINDER,')
     self:pathfinderMain(delay + 11)
     self.timer:after(delay + 11, function()
-        play('Kubbi - Ember - 01 Pathfinder', {loop = true, volume = 1})
+        fadeVolume('music', 0, 0)
+        fadeIn('Kubbi - Ember - 08 Restoration', {duration = 10, loop = true, volume = 0.5})
     end)
 end
 

@@ -69,7 +69,7 @@ function PathfinderCreditsModule:draw()
     local font = self.console.font
     local t = self.selections[self.vertical_selection_index][self.horizontal_selection_index]
     local x, y = t.ox - 1, self.vertical_selection_index*(font:getHeight() + 2) + 5
-    if self.vertical_selection_index >= 6 then y = y + font:getHeight() + 2 end
+    if self.vertical_selection_index >= 7 then y = y + font:getHeight() + 2 end
     local w, h = t.w + 2, font:getHeight()
     local r, g, b = unpack(boost_color)
     love.graphics.setColor(r, g, b, 128)
@@ -81,7 +81,7 @@ function PathfinderCreditsModule:setSelections()
     local font = self.console.font
     self.selections = {
         [1] = {{ox = font:getWidth('    PATHFINDER by '), w = font:getWidth('Prometheum'), link = ''}},
-        [1] = {{ox = font:getWidth('    BYTEPATH by '), w = font:getWidth('a327ex'), link = 'https://twitter.com/a327ex'}},
+        [2] = {{ox = font:getWidth('    BYTEPATH by '), w = font:getWidth('a327ex'), link = 'https://www.a327ex.com'}},
         [3] = {{ox = font:getWidth('    music by '), w = font:getWidth('Kubbi'), link = 'https://kubbimusic.com/'}},
         [4] = {{ox = font:getWidth('    sound effects from '), w = font:getWidth('freesound.org'), link = 'https://freesound.org/'}},
         [5] = {

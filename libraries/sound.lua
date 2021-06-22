@@ -6,7 +6,8 @@ function sound()
         master = {volume = 1}, keyboard = {volume = 0.5}, 
         computer = {volume = 1}, 
         music = {base_volume = 1, volume = 1, multiplier = 0}, 
-        game = {base_volume = 1, volume = 1, multiplier = 0}
+        game = {base_volume = 1, volume = 1, multiplier = 0},
+        menu = {base_volume = 0.5, volume = 1, multiplier = 0}
     }
 
     for i = 1, 28 do register('keystroke_' .. i, 'static', {'master', 'sfx', 'keyboard'}) end
@@ -53,10 +54,12 @@ function sound()
         'Kubbi - Ember - 05 Compass', 
         'Kubbi - Ember - 06 Overworld',
         'Kubbi - Ember - 07 The Cairn',
-        'Kubbi - Ember - 08 Restoration',
         'Kubbi - Ember - 09 Formed by Glaciers',
     }
     for _, song in ipairs(songs) do register(song, 'stream', {'master', 'music'}) end
+
+    register('Kubbi - Ember - 08 Restoration', 'stream', {'master', 'menu'})
+
     bytepath_songs = {
         'AIRGLOW - AIRGLOW - Memory Bank - 01 Memory Bank',
         'AIRGLOW - AIRGLOW - Memory Bank - 02 Cepheid Disk',
@@ -157,6 +160,7 @@ end
 
 function fadeIn(name, opts)
     local source = play(name, {loop = opts.loop, volume = 0})
+    restoration_fade_out = source
     if not opts.duration then error("fadeIn() needs a 'duration' argument in the options table") end
     local time = 0
     timer:during('computer_background', opts.duration, function(dt)
@@ -167,7 +171,8 @@ function fadeIn(name, opts)
 end
 
 function fadeOut(source, duration)
-    local volume = source:getVolume()
+    if source == 'restoration' then source = restoration_fade_out end
+    local volume = 0.5
     local time = 0
     timer:during('computer_background', duration, function(dt)
         time = time + dt
@@ -203,6 +208,7 @@ function playRandomPathfinderSong()
         currently_playing_song = play(table.random(pathfinder_songs))
     end
 end
+    
 
 function playKeystroke()
     play('keystroke_' .. love.math.random(1, 28), {volume = random(0.6, 0.8), pitch = random(0.9, 1.1)})

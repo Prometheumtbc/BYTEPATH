@@ -1,5 +1,7 @@
 PathfinderConsoleInputLine = Object:extend()
 
+
+
 function PathfinderConsoleInputLine:new(x, y, opts)
     self.id = UUID()
     self.timer = Timer()
@@ -103,8 +105,8 @@ function PathfinderConsoleInputLine:enter()
 
         elseif command == 'connect' then
             gotoRoom('Stage')
-            currently_playing_song:stop()
-            table.remove(playing_sources, 1)
+            fadeOut('restoration', 2)
+            fadeVolume('music', 5, 1)
             pathfinder_random_track = true
             playRandomPathfinderSong()
 

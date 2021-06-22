@@ -75,7 +75,12 @@ function ConsoleInputLine:enter()
             self:help()
         
         elseif command == 'pathfinder' then
-            table.insert(self.console.modules, PathfinderConsoleModule(self.console, self.console.line_y))
+            if pathfinder_unlocked then
+                pathfinder_intro = true
+                table.insert(self.console.modules, PathfinderConsoleModule(self.console, self.console.line_y))
+            else
+                Console:addLine(0.0, '@access denied#')
+            end
         
         elseif command == 'about' then
             table.insert(self.console.modules, AboutModule(self.console, self.console.line_y))
