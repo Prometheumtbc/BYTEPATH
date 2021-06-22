@@ -31,6 +31,7 @@ function love.load()
     start_time = os.time()
     start_date = os.date("*t")
     trailer_mode = true
+    first_run_ever = true
 
     love.filesystem.setIdentity('BYTEPATH')
     love.graphics.setDefaultFilter('nearest', 'nearest')
