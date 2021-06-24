@@ -344,7 +344,7 @@ function PathfinderConsole:pathfinderIntro()
     self:pathfinderMain(delay + 11)
     self.timer:after(delay + 11, function()
         fadeVolume('music', 0, 0)
-        fadeIn('Kubbi - Ember - 08 Restoration', {duration = 10, loop = true, volume = 0.5})
+        fadeIn('Kubbi - Ember - 08 Restoration', {duration = 5, loop = true, volume = 0.5})
     end)
 end
 
