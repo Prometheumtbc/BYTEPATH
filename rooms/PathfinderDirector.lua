@@ -9,7 +9,7 @@ function PathfinderDirector:update(dt)
 end
 
 function PathfinderDirector:getChart(chart)
-    self.loadedChart = require 'objects/charts/' .. chart
+    self.loadedChartDirector = require 'objects/charts/' .. chart .. '/chartDirector.lua'
     -- fetch beats per minute and seconds per beat
     self.bpm = self.loadedChart:getBPM()
     self.spb = 60 / bpm
