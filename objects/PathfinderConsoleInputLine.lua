@@ -118,6 +118,11 @@ function PathfinderConsoleInputLine:enter()
 
         elseif command == 'clear' then
             table.insert(self.console.modules, ClearModule(self.console, self.console.line_y))
+        
+        elseif command == 'return' then
+            gotoRoom('Console')
+            fadeOut('restoration', 2)
+            fadeVolume('music', 5, 1)
 
         elseif command:find('verify') then
             local key_string = command:utf8sub(8, -1)
